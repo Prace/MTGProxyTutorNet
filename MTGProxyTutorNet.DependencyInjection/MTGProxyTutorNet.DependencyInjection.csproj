@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MTGProxyTutorNet.BusinessLogic\MTGProxyTutorNet.BusinessLogic.csproj" />
+    <ProjectReference Include="..\MTGProxyTutorNet.Contracts\MTGProxyTutorNet.Contracts.csproj" />
+    <ProjectReference Include="..\MTGProxyTutorNet.DataGathering\MTGProxyTutorNet.DataGathering.csproj" />
+    <ProjectReference Include="..\MTGProxyTutorNet.ViewModels\MTGProxyTutorNet.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
