@@ -44,6 +44,9 @@ namespace MTGProxyTutorNet
                     {
                         foreach (CardWrapperViewModel c in selectedCards)
                         {
+                            if (c.IsCustom)
+                                continue;
+
                             if (c.Images != null)
                                 c.Images.Clear();
                             else

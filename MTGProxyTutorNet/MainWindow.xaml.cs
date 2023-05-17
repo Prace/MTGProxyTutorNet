@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using MTGProxyTutorNet;
 using MTGProxyTutorNet.Contracts.Models.App;
+using MTGProxyTutorNet.Contracts.Models.Custom;
 using MTGProxyTutorNet.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ namespace MTGProxyTutorNet
     {
         private readonly MainWindowViewModel _vm;
         private List<ParsedCard> _parsedCards;
+        private CardSelectionWindow _cardPasteListWindow;
+        private CustomCardWindow _customCardWindow;
 
         public MainWindow()
         {
@@ -32,20 +35,32 @@ namespace MTGProxyTutorNet
             SubscribeToChildrenEvents();
         }
 
-        public async void ParseCards(object sender, RoutedEventArgs e)
+
+
+        public void ParseCards_Click(object sender, RoutedEventArgs e)
         {
-            _vm.ParseCardsBtnEnabled = false;
+            _cardPasteListWindow = new CardSelectionWindow();
+            _cardPasteListWindow.CardsParsedEvent += CardsParsedEventHandler;
+            _cardPasteListWindow.ShowDialog();
+        }
 
-            _parsedCards = CardList.GetParsedCards().ToList();
-            await FillCardGrid();
-
-            _vm.ParseCardsBtnEnabled = true;
+        private void CardsParsedEventHandler(object sender, List<ParsedCard> e)
+        {
+            _parsedCards = e;
+            FillCardGrid();
+            _cardPasteListWindow.Close();
+            _cardPasteListWindow.CardsParsedEvent -= CardsParsedEventHandler;
         }
 
         private async Task FillCardGrid()
         {
+            _vm.ParseCardsBtnEnabled = false;
+            _vm.AddSingleCardBtnEnabled = false;
+
+            // Clear card list 
+            CardSelection.VM.FlushCards();
+
             var failedFetch = new List<ParsedCard>();
-            var updatedCards = new List<string>();
 
             foreach (var pc in _parsedCards)
             {
@@ -53,7 +68,6 @@ namespace MTGProxyTutorNet
                 {
                     var cardWrapper = await GetCard(pc);
                     AddOrUpdateCard(cardWrapper);
-                    updatedCards.Add(cardWrapper.Card.CardName);
                 }
                 catch
                 {
@@ -61,15 +75,11 @@ namespace MTGProxyTutorNet
                 }
             }
 
-            var cardsToRemove = CardSelection.VM.Cards.Where(c => !updatedCards.Contains(c.Card.CardName));
-
-            foreach (var rc in cardsToRemove.ToList())
-            {
-                CardSelection.VM.RemoveCard(rc);
-            }
-
             NotifyFailedFetchedCards(failedFetch);
             UpdateTotalInfo();
+
+            _vm.ParseCardsBtnEnabled = true;
+            _vm.AddSingleCardBtnEnabled = true;
         }
 
         private async void ExportToPDF(object sender, RoutedEventArgs e)
@@ -111,6 +121,7 @@ namespace MTGProxyTutorNet
 
         private void SubscribeToChildrenEvents()
         {
+
             CardSelection.SelectedCardsChanged += ToggleExportBtn;
             CardSelection.SelectedCardsChanged += UpdateTotalInfo;
             TCGSelection.SelectionChanged += UpdateCardFecthingStrategy;
@@ -163,9 +174,26 @@ namespace MTGProxyTutorNet
 
         private void ClearData()
         {
-            CardSelection.VM.Cards.Clear();
+            CardSelection.VM.FlushCards();
             ToggleExportBtn();
             UpdateTotalInfo();
+        }
+
+        private void AddCustomCard_Click(object sender, RoutedEventArgs e)
+        {
+            _customCardWindow = new CustomCardWindow();
+            _customCardWindow.CustomCardLoaded += CustomCardLoadedEventHandler;
+            _customCardWindow.ShowDialog();
+        }
+
+        private void CustomCardLoadedEventHandler(object sender, CustomCard e)
+        {
+            var cardWrapper = new CardWrapperViewModel(e, e.Quantity);
+            cardWrapper.Images = new List<CardImage> { e.CardImage };
+            cardWrapper.IsCustom = true;
+            AddOrUpdateCard(cardWrapper);
+            _customCardWindow.Close();
+            _customCardWindow.CustomCardLoaded -= CustomCardLoadedEventHandler;
         }
     }
 }

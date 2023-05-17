@@ -56,6 +56,17 @@ namespace MTGProxyTutorNet.ViewModels
             }
         }
 
+        private bool addSingleCardBtnEnabled = true;
+        public bool AddSingleCardBtnEnabled
+        {
+            get { return addSingleCardBtnEnabled; }
+            set
+            {
+                addSingleCardBtnEnabled = value;
+                OnPropertyChanged(nameof(AddSingleCardBtnEnabled));
+            }
+        }
+
         private bool exportBtnEnabled = false;
         public bool ExportBtnEnabled
         {

@@ -19,6 +19,11 @@ namespace MTGProxyTutorNet.ViewModels
             _mapper = mapper;
         }
 
+        public void FlushCards()
+        {
+            this.Cards.Clear();
+        }
+
         private ObservableCollection<CardWrapperViewModel> cards = new ObservableCollection<CardWrapperViewModel>();
         public ObservableCollection<CardWrapperViewModel> Cards
         {

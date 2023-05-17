@@ -69,6 +69,20 @@ namespace MTGProxyTutorNet.ViewModels
             }
         }
 
+        private bool _isCustom = false;
+        public bool IsCustom
+        {
+            get
+            {
+                return _isCustom;
+            }
+            set
+            {
+                _isCustom = value;
+                this.OnPropertyChanged(nameof(IsCustom));
+            }
+        }
+
         public int NumCardImages
         {
             get 

@@ -1,0 +1,31 @@
+﻿<Window x:Class="MTGProxyTutorNet.CardSelectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MTGProxyTutorNet"
+        mc:Ignorable="d"
+        Title="CardSelectionWindow" Height="450" Width="350">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+            <Label Content="Paste List below:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"></Label>
+        </StackPanel>
+
+        <local:CardListBox x:Name="CardList" Grid.Row="1"/>
+
+        <DockPanel Grid.Column="0" Grid.Row="2" Margin="10">
+            <Button Content="Parse Cards" Click="ParseCards" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0"></Button>
+            <Button Content="Cancel" Click="Exit" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0"></Button>
+        </DockPanel>
+
+    </Grid>
+</Window>

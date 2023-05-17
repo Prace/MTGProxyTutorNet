@@ -5,42 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:local="clr-namespace:MTGProxyTutorNet"
         mc:Ignorable="d"
-        Title="MTGProxyTutorNet" Height="600" Width="1000">
+        Title="MTGProxyTutorNet" Height="600" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1.5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
         <local:CardListBox x:Name="CardList" Grid.Row="0"/>
+        <local:CardSelectionGrid x:Name="CardSelection" Grid.Row="0" Grid.Column="1" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-            <ComboBox x:Name="TCGSelection" SelectedIndex="0" Margin="10" HorizontalAlignment="Left" 
-                      VerticalAlignment="Center" Width="150" Height="30"
+            <TextBox Width="300" Height="30"  MaxLength="100" Margin="20"/>
+
+            <Button x:Name="AddSingleCardBtn" IsEnabled="{Binding AddSingleCardBtnEnabled}" Height="30" Width="70" 
+                    Content="Add Card" VerticalAlignment="Center" Margin="5"></Button>
+
+            <Label Content="OR" VerticalAlignment="Center" Margin="10"></Label>
+
+            <Button x:Name="AddCustomBtn" Click="AddCustomCard_Click" IsEnabled="{Binding ParseCardsBtnEnabled}" Height="30" Width="120" 
+                    Content="Add Custom Card" VerticalAlignment="Center" Margin="10"></Button>
+
+            <Label Content="OR" VerticalAlignment="Center" Margin="10"></Label>
+
+            <Button x:Name="ParseCardsBtn" Click="ParseCards_Click" IsEnabled="{Binding ParseCardsBtnEnabled}" Height="30" Width="80" 
+                    Content="Paste List" VerticalAlignment="Center" Margin="10"></Button>
+        </StackPanel>
+
+
+        <DockPanel Grid.Column="0" Grid.Row="4">
+            <ComboBox x:Name="TCGSelection" SelectedIndex="0" Margin="20" HorizontalAlignment="Left" 
+                      VerticalAlignment="Center" Width="150" Height="25"
                       ItemsSource="{Binding Path=SelectedTCGType, Converter={local:EnumToCollectionConverter}, Mode=OneTime}"
                       SelectedValuePath="Value"
                       DisplayMemberPath="Key"
                       SelectedValue="{Binding Path=SelectedTCGType}" />
 
-            <Button x:Name="ParseCardsBtn" Click="ParseCards" IsEnabled="{Binding ParseCardsBtnEnabled}" Height="30" Width="60" 
-                    Content="Parse" VerticalAlignment="Center"></Button>
-        </StackPanel>
-
-        <local:CardSelectionGrid x:Name="CardSelection" Grid.Row="0" Grid.Column="1" />
-
-        <DockPanel Grid.Column="1" Grid.Row="1" Margin="20">
             <Label x:Name="TotalCardsLabel" Content="Total Card Faces:" VerticalAlignment="Center" />
-            <TextBlock x:Name="TotalCardsNumber" Text="{Binding TotalCardsToPrint}" VerticalAlignment="Center" FontWeight="Bold" />
+            <TextBlock x:Name="TotalCardsNumber" Text="{Binding TotalCardsToPrint}" VerticalAlignment="Center" FontWeight="Bold" Margin="10"/>
 
             <Label x:Name="TotalSheetsLabel" Content="Total Sheets:" VerticalAlignment="Center" />
-            <TextBlock x:Name="TotalSheetsNumber" Text="{Binding TotalSheetsToPrint}" VerticalAlignment="Center" FontWeight="Bold" />
+            <TextBlock x:Name="TotalSheetsNumber" Text="{Binding TotalSheetsToPrint}" VerticalAlignment="Center" FontWeight="Bold" Margin="10"/>
 
             <Button x:Name="ExportToPDFBtn" Click="ExportToPDF" IsEnabled="{Binding ExportBtnEnabled}" Height="30" Width="100" 
-                    Content="Export to PDF" HorizontalAlignment="Right"></Button>
+                    Content="Export to PDF" HorizontalAlignment="Right" Margin="20"></Button>
         </DockPanel>
     </Grid>
 </Window>
