@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace MTGProxyTutorNet.ViewModels
 {
-    public class CardListBoxViewModel : BaseViewModel
+    public class CardListPasteWindowViewModel : BaseViewModel
     {
         private IMultiLineStringParser _multiLineStringParser { get; }
 
-        public CardListBoxViewModel(IMultiLineStringParser multilineStringParser)
+        public CardListPasteWindowViewModel(IMultiLineStringParser multilineStringParser)
         {
             _multiLineStringParser = multilineStringParser;
         }
@@ -21,16 +21,17 @@ namespace MTGProxyTutorNet.ViewModels
             {
                 pastedCardList = value;
                 this.OnPropertyChanged(nameof(pastedCardList));
-                this.OnPropertyChanged(nameof(PastedCardListEmpty));
+                this.OnPropertyChanged(nameof(IsParseButtonEnabled));
             }
         }
 
-        public bool PastedCardListEmpty
+        public bool IsParseButtonEnabled
         {
-            get { return string.IsNullOrWhiteSpace(pastedCardList); }
+            get
+            {
+                return !string.IsNullOrWhiteSpace(pastedCardList);
+            } 
         }
-
-
 
         public IEnumerable<ParsedCard> ParseCards(out List<string> failed)
         {

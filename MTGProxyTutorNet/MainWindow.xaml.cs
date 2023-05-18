@@ -24,7 +24,7 @@ namespace MTGProxyTutorNet
     {
         private readonly MainWindowViewModel _vm;
         private List<ParsedCard> _parsedCards;
-        private CardSelectionWindow _cardPasteListWindow;
+        private CardListPasteWindow _cardListPasteWindow;
         private CustomCardWindow _customCardWindow;
 
         public MainWindow()
@@ -35,21 +35,19 @@ namespace MTGProxyTutorNet
             SubscribeToChildrenEvents();
         }
 
-
-
         public void ParseCards_Click(object sender, RoutedEventArgs e)
         {
-            _cardPasteListWindow = new CardSelectionWindow();
-            _cardPasteListWindow.CardsParsedEvent += CardsParsedEventHandler;
-            _cardPasteListWindow.ShowDialog();
+            _cardListPasteWindow = new CardListPasteWindow();
+            _cardListPasteWindow.CardsParsedEvent += CardsParsedEventHandler;
+            _cardListPasteWindow.ShowDialog();
         }
 
         private void CardsParsedEventHandler(object sender, List<ParsedCard> e)
         {
             _parsedCards = e;
             FillCardGrid();
-            _cardPasteListWindow.Close();
-            _cardPasteListWindow.CardsParsedEvent -= CardsParsedEventHandler;
+            _cardListPasteWindow.Close();
+            _cardListPasteWindow.CardsParsedEvent -= CardsParsedEventHandler;
         }
 
         private async Task FillCardGrid()

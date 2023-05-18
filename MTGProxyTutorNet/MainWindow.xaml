@@ -12,11 +12,10 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
-            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <local:CardListBox x:Name="CardList" Grid.Row="0"/>
         <local:CardSelectionGrid x:Name="CardSelection" Grid.Row="0" Grid.Column="1" />
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">

@@ -51,8 +51,9 @@ namespace MTGProxyTutorNet.DependencyInjection
             #region ViewModels
 
             serviceCollection.AddScoped<MainWindowViewModel>();
-            serviceCollection.AddScoped<CardListBoxViewModel>();
+            serviceCollection.AddScoped<CardListPasteWindowViewModel>();
             serviceCollection.AddScoped<CardSelectionGridViewModel>();
+            serviceCollection.AddScoped<CustomCardWindowViewModel>();
 
             #endregion
 
