@@ -1,6 +1,7 @@
 ﻿using MTGProxyTutorNet.Contracts.Exceptions;
 using MTGProxyTutorNet.Contracts.Interfaces;
 using Newtonsoft.Json;
+using System.Reflection;
 using System.Runtime.Caching;
 
 namespace MTGProxyTutorNet.BusinessLogic.Http
@@ -19,7 +20,7 @@ namespace MTGProxyTutorNet.BusinessLogic.Http
 			_cache = MemoryCache.Default;
 		}
 
-		public async Task<T> GetAsync<T>(string url, bool useCache = true) where T: class
+		public async Task<T> GetAsync<T>(string url, int msDelay = 0, bool useCache = true) where T: class
 		{
 			HttpResponseMessage response = null;
 
@@ -32,7 +33,8 @@ namespace MTGProxyTutorNet.BusinessLogic.Http
 						return cachedValue;
 				}
 
-				response = await _client.GetAsync(url);
+                await Task.Delay(msDelay);
+                response = await _client.GetAsync(url);
 				response.EnsureSuccessStatusCode();
 				var body = await response.Content.ReadAsStringAsync();
 				T result = JsonConvert.DeserializeObject<T>(body);
@@ -49,14 +51,14 @@ namespace MTGProxyTutorNet.BusinessLogic.Http
 			}
 		}
 
-		public T Get<T>(string url, bool useCache = true) where T : class
+		public T Get<T>(string url, int msDelay = 0, bool useCache = true) where T : class
 		{
-			var task = GetAsync<T>(url, useCache);
+			var task = GetAsync<T>(url, msDelay, useCache);
 			task.Wait();
 			return task.Result;
 		}
 
-		public async Task<byte[]> GetBinaryAsync(string url, bool useCache = true)
+		public async Task<byte[]> GetBinaryAsync(string url, int msDelay = 0, bool useCache = true)
 		{
 			HttpResponseMessage response = null;
 
@@ -69,6 +71,7 @@ namespace MTGProxyTutorNet.BusinessLogic.Http
 						return cachedValue;
 				}
 
+				await Task.Delay(msDelay);
 				response = await _client.GetAsync(url);
 				response.EnsureSuccessStatusCode();
 				var binary = await response.Content.ReadAsByteArrayAsync();
@@ -85,9 +88,9 @@ namespace MTGProxyTutorNet.BusinessLogic.Http
 			}
 		}
 
-		public byte[] GetBinary(string url, bool useCache = true)
+		public byte[] GetBinary(string url, int msDelay = 0, bool useCache = true)
 		{
-			var task = GetBinaryAsync(url, useCache);
+			var task = GetBinaryAsync(url, msDelay, useCache);
 			task.Wait();
 			return task.Result;
 		}

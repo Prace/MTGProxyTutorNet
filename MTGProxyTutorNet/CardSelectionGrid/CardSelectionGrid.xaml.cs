@@ -7,6 +7,9 @@ using System.Windows.Controls;
 using System.Linq;
 using MTGProxyTutorNet.ViewModels;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
+using System.Windows;
 
 namespace MTGProxyTutorNet
 {
@@ -73,9 +76,25 @@ namespace MTGProxyTutorNet
             }
         }
 
-        private void CardSelectionCheckChanged(object sender, System.Windows.RoutedEventArgs e)
+        private void CardSelectionCheckChanged(object sender, RoutedEventArgs e)
         {
             SelectedCardsChanged?.Invoke();
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void DeleteCard_Click(object sender, RoutedEventArgs e)
+        {
+            var card = (sender as FrameworkElement).DataContext as CardWrapperViewModel;
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                VM.RemoveCard(card);
+            }
         }
     }
 }

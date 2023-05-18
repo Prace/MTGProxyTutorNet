@@ -13,6 +13,7 @@ namespace MTGProxyTutorNet.DataGathering.PokemonTCG.Logic
     public class PokemonTCGFetcher : ICardDataFetcher
     {
         private const string SEARCH_BY_NAME_URL = "https://api.pokemontcg.io/v2/cards?q=name:{0}";
+        private const int CALL_WAIT_TIME_MS = 200;
         private IWebApiConsumer _webApiConsumer;
         private ILogger _logger;
         private IMapper _mapper;
@@ -41,7 +42,7 @@ namespace MTGProxyTutorNet.DataGathering.PokemonTCG.Logic
             if (url == null)
                 return null;
 
-            var binary = await _webApiConsumer.GetBinaryAsync(url);
+            var binary = await _webApiConsumer.GetBinaryAsync(url, CALL_WAIT_TIME_MS);
             if (binary != null)
                 return new CardImage(binary);
             return null;
@@ -58,7 +59,8 @@ namespace MTGProxyTutorNet.DataGathering.PokemonTCG.Logic
         {
             string correctedName = sanitize(cardName);
             string finalUrl = string.Format(SEARCH_BY_NAME_URL, correctedName);
-            return _webApiConsumer.GetAsync<PokemonTCGSearchResult>(finalUrl);
+            Task.Delay(CALL_WAIT_TIME_MS);
+            return _webApiConsumer.GetAsync<PokemonTCGSearchResult>(finalUrl, CALL_WAIT_TIME_MS);
         }
 
         private Card mapResultDataToCard(PokemonTCGSearchResult resultData)

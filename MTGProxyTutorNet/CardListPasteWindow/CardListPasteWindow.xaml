@@ -20,7 +20,7 @@
             <Label Content="Paste List below:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0"></Label>
         </StackPanel>
 
-        <TextBox x:Name="cardsTextBox" Grid.Column="0" Grid.Row="1" Text="{Binding PastedCardList, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="true" VerticalScrollBarVisibility="Visible"></TextBox>
+        <TextBox x:Name="CardsTextBox" Grid.Column="0" Grid.Row="1" Text="{Binding PastedCardList, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="true" VerticalScrollBarVisibility="Visible" Margin="5"></TextBox>
 
         <DockPanel Grid.Column="0" Grid.Row="2" Margin="10">
             <Button Content="Parse Cards" Click="ParseCards" IsEnabled="{Binding Path=IsParseButtonEnabled, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,0,0,0"></Button>

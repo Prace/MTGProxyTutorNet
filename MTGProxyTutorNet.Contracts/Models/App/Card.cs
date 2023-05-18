@@ -9,7 +9,7 @@ namespace MTGProxyTutorNet.Contracts.Models.App
 		public event Action OnSelectedPrintChanged;
 
 		public string CardName { get; set; }
-		public List<CardPrint> Printings { get; set; }
+		public virtual List<CardPrint> Printings { get; set; }
 
 		private CardPrint selectedPrint;
 		public CardPrint SelectedPrint

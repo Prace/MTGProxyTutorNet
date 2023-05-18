@@ -29,6 +29,7 @@ namespace MTGProxyTutorNet
             VM = ViewModelLocator.GetViewModel<CardListPasteWindowViewModel>();
             DataContext = VM;
             InitializeComponent();
+            CardsTextBox.Focus();
         }
 
         public IEnumerable<ParsedCard> GetParsedCards()

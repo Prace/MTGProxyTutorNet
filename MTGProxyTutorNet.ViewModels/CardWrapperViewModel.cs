@@ -87,7 +87,7 @@ namespace MTGProxyTutorNet.ViewModels
         {
             get 
             {
-                return this.Card.SelectedPrint.ImageUrls.Count;
+                return IsCustom ? 1 : this.Card.SelectedPrint.ImageUrls.Count;
             }
         }
 

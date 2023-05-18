@@ -13,7 +13,7 @@ namespace MTGProxyTutorNet.DataGathering.Scryfall.Logic
     {
         private const string BASE_URL = "https://api.scryfall.com";
         private const string CARD_BY_NAME_URL = BASE_URL + "/cards/named?fuzzy={0}";
-        private const int CALL_WAIT_TIME_MS = 100;
+        private const int CALL_WAIT_TIME_MS = 200;
         private IWebApiConsumer _webApiConsumer;
         private ILogger _logger;
         private IMapper _mapper;
@@ -33,8 +33,9 @@ namespace MTGProxyTutorNet.DataGathering.Scryfall.Logic
             {
                 var card = _mapper.Map<MagicCard>(cardDetails);
                 await Task.Delay(CALL_WAIT_TIME_MS);
-                var printings = await _webApiConsumer.GetAsync<ScryfallCardPrintings>(cardDetails.Prints_search_uri);
+                var printings = await _webApiConsumer.GetAsync<ScryfallCardPrintings>(cardDetails.Prints_search_uri, CALL_WAIT_TIME_MS);
                 card.Printings = printings.Data.Select(print => _mapper.Map<MagicCardPrint>(print) as CardPrint).ToList();
+                card.Printings.Reverse();
                 return card;
             }
 
@@ -46,7 +47,7 @@ namespace MTGProxyTutorNet.DataGathering.Scryfall.Logic
             if (url == null)
                 return null;
             
-            var binary = await _webApiConsumer.GetBinaryAsync(url);
+            var binary = await _webApiConsumer.GetBinaryAsync(url, CALL_WAIT_TIME_MS);
             if (binary != null)
                 return new CardImage(binary);
             return null;
@@ -62,7 +63,7 @@ namespace MTGProxyTutorNet.DataGathering.Scryfall.Logic
         private Task<ScryfallCard> getScryfallCardByName(string cardName)
         {
             string correctedName = sanitize(cardName);
-            return _webApiConsumer.GetAsync<ScryfallCard>(string.Format(CARD_BY_NAME_URL, correctedName));
+            return _webApiConsumer.GetAsync<ScryfallCard>(string.Format(CARD_BY_NAME_URL, correctedName), CALL_WAIT_TIME_MS);
         }
     }
 }

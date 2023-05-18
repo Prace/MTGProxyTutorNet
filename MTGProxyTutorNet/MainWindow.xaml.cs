@@ -119,7 +119,6 @@ namespace MTGProxyTutorNet
 
         private void SubscribeToChildrenEvents()
         {
-
             CardSelection.SelectedCardsChanged += ToggleExportBtn;
             CardSelection.SelectedCardsChanged += UpdateTotalInfo;
             TCGSelection.SelectionChanged += UpdateCardFecthingStrategy;
@@ -151,7 +150,6 @@ namespace MTGProxyTutorNet
 
         private async Task<CardWrapperViewModel> GetCard(ParsedCard parsedCard)
         {
-            await Task.Delay(200);
             var cardData = await GetCardByNameAsync(parsedCard.CardName);
             var cardWrapper = new CardWrapperViewModel(cardData, parsedCard.Quantity);
             return cardWrapper;
