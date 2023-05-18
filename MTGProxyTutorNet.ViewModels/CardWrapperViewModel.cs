@@ -24,6 +24,7 @@ namespace MTGProxyTutorNet.ViewModels
             {
                 _isSelected = value;
                 this.OnPropertyChanged(nameof(IsSelected));
+                this.OnPropertyChanged(nameof(CardsToPrint));
             }
         }
 
@@ -52,6 +53,7 @@ namespace MTGProxyTutorNet.ViewModels
             {
                 _quantity = value;
                 this.OnPropertyChanged(nameof(Quantity));
+                this.OnPropertyChanged(nameof(CardsToPrint));
             }
         }
 
@@ -66,6 +68,7 @@ namespace MTGProxyTutorNet.ViewModels
             {
                 _images = value;
                 this.OnPropertyChanged(nameof(Images));
+                this.OnPropertyChanged(nameof(CardsToPrint));
             }
         }
 
@@ -88,6 +91,14 @@ namespace MTGProxyTutorNet.ViewModels
             get 
             {
                 return IsCustom ? 1 : this.Card.SelectedPrint.ImageUrls.Count;
+            }
+        }
+
+        public int CardsToPrint
+        {
+            get
+            {
+                return NumCardImages * Quantity;
             }
         }
 

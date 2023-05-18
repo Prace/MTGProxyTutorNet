@@ -31,7 +31,7 @@ namespace MTGProxyTutorNet
             get
             {
                 var cards = CardSelectionDataGrid.ItemsSource as IEnumerable<CardWrapperViewModel>;
-                return cards.Where(c => c.IsSelected).Sum(c => c.Quantity);
+                return cards.Sum(c => c.CardsToPrint);
             }
         }
 

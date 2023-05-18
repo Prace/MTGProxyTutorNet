@@ -5,6 +5,7 @@ using MTGProxyTutorNet.Contracts.Models.Custom;
 using MTGProxyTutorNet.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,7 +75,6 @@ namespace MTGProxyTutorNet
             }
 
             NotifyFailedFetchedCards(failedFetch);
-            UpdateTotalInfo();
 
             _vm.ParseCardsBtnEnabled = true;
             _vm.AddSingleCardBtnEnabled = true;
@@ -120,9 +120,19 @@ namespace MTGProxyTutorNet
         private void SubscribeToChildrenEvents()
         {
             CardSelection.SelectedCardsChanged += ToggleExportBtn;
-            CardSelection.SelectedCardsChanged += UpdateTotalInfo;
+            CardSelection.VM.Cards.CollectionChanged += UpdateTotalInfo;
             TCGSelection.SelectionChanged += UpdateCardFecthingStrategy;
+
         }
+
+        private void UpdateTotalInfo(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (CardSelection.VM.Cards != null)
+            {
+                _vm.TotalCardsToPrint = CardSelection.VM.Cards.Where(c => c.IsSelected).Sum(c => c.CardsToPrint);
+            }
+        }
+
         private void UpdateCardFecthingStrategy(object sender, SelectionChangedEventArgs e)
         {
             CardDataFetcherLocator.CurrentGame = _vm.SelectedTCGType;
@@ -160,19 +170,10 @@ namespace MTGProxyTutorNet
             _vm.ExportBtnEnabled = CardSelection.VM.Cards.Any(c => c.IsSelected);
         }
 
-        private void UpdateTotalInfo()
-        {
-            if (CardSelection.VM.Cards != null)
-            {
-                _vm.TotalCardsToPrint = CardSelection.VM.Cards.Where(c => c.IsSelected).Sum(c => c.NumCardImages * c.Quantity);
-            }
-        }
-
         private void ClearData()
         {
             CardSelection.VM.FlushCards();
             ToggleExportBtn();
-            UpdateTotalInfo();
         }
 
         private void AddCustomCard_Click(object sender, RoutedEventArgs e)

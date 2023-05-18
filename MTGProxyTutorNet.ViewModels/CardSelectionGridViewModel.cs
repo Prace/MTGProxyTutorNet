@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MTGProxyTutorNet.Contracts.Extensions;
 using MTGProxyTutorNet.Contracts.Interfaces;
 using MTGProxyTutorNet.Contracts.Models.App;
 using System.Collections.Generic;
@@ -24,8 +25,8 @@ namespace MTGProxyTutorNet.ViewModels
             this.Cards.Clear();
         }
 
-        private ObservableCollection<CardWrapperViewModel> cards = new ObservableCollection<CardWrapperViewModel>();
-        public ObservableCollection<CardWrapperViewModel> Cards
+        private RealObservableCollection<CardWrapperViewModel> cards = new RealObservableCollection<CardWrapperViewModel>();
+        public RealObservableCollection<CardWrapperViewModel> Cards
         {
             get
             {
