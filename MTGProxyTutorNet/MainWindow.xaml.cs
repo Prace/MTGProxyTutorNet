@@ -120,15 +120,17 @@ namespace MTGProxyTutorNet
         private void SubscribeToChildrenEvents()
         {
             CardSelection.SelectedCardsChanged += ToggleExportBtn;
-            CardSelection.VM.Cards.CollectionChanged += UpdateTotalInfo;
+            CardSelection.VM.Cards.CollectionChanged += UpdateCardListInfo;
             TCGSelection.SelectionChanged += UpdateCardFecthingStrategy;
 
         }
 
-        private void UpdateTotalInfo(object sender, NotifyCollectionChangedEventArgs e)
+        private void UpdateCardListInfo(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (CardSelection.VM.Cards != null)
             {
+                ToggleClearListBtn();
+                ToggleExportBtn();
                 _vm.TotalCardsToPrint = CardSelection.VM.Cards.Where(c => c.IsSelected).Sum(c => c.CardsToPrint);
             }
         }
@@ -170,10 +172,9 @@ namespace MTGProxyTutorNet
             _vm.ExportBtnEnabled = CardSelection.VM.Cards.Any(c => c.IsSelected);
         }
 
-        private void ClearData()
+        private void ToggleClearListBtn()
         {
-            CardSelection.VM.FlushCards();
-            ToggleExportBtn();
+            _vm.ClearListBtnEnabled = CardSelection.VM.Cards.Any();
         }
 
         private void AddCustomCard_Click(object sender, RoutedEventArgs e)
@@ -191,6 +192,49 @@ namespace MTGProxyTutorNet
             AddOrUpdateCard(cardWrapper);
             _customCardWindow.Close();
             _customCardWindow.CustomCardLoaded -= CustomCardLoadedEventHandler;
+        }
+
+        private void AddSingleCard_Click(object sender, RoutedEventArgs e)
+        {
+            AddSingleCard();
+        }
+
+        private async Task AddSingleCard()
+        {
+            var pc = new ParsedCard(1, _vm.SingleCardToAdd);
+            try
+            {
+                var cardWrapper = await GetCard(pc);
+                AddOrUpdateCard(cardWrapper);
+            }
+            catch
+            {
+                NotifyFailedFetchedCards(new List<ParsedCard> { pc });
+            }
+        }
+
+        private void ClearList_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Clear Cards Confirmation", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                ClearData();
+            }
+        }
+
+        private void ClearData()
+        {
+            CardSelection.VM.FlushCards();
+            ToggleExportBtn();
+            ToggleClearListBtn();
+        }
+
+        private void SingleCard_OnEnterKey(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AddSingleCard();
+            }
         }
     }
 }

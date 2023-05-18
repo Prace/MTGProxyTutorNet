@@ -56,17 +56,6 @@ namespace MTGProxyTutorNet.ViewModels
             }
         }
 
-        private bool addSingleCardBtnEnabled = true;
-        public bool AddSingleCardBtnEnabled
-        {
-            get { return addSingleCardBtnEnabled; }
-            set
-            {
-                addSingleCardBtnEnabled = value;
-                OnPropertyChanged(nameof(AddSingleCardBtnEnabled));
-            }
-        }
-
         private bool exportBtnEnabled = false;
         public bool ExportBtnEnabled
         {
@@ -77,6 +66,41 @@ namespace MTGProxyTutorNet.ViewModels
                 OnPropertyChanged(nameof(ExportBtnEnabled));
             }
         }
+
+        private bool clearListBtnEnabled = false;
+        public bool ClearListBtnEnabled
+        {
+            get { return clearListBtnEnabled; }
+            set
+            {
+                clearListBtnEnabled = value;
+                OnPropertyChanged(nameof(ClearListBtnEnabled));
+            }
+        }
+
+        private bool addSingleCardBtnEnabled = true;
+        public bool AddSingleCardBtnEnabled
+        {
+            get { return addSingleCardBtnEnabled && !string.IsNullOrWhiteSpace(SingleCardToAdd); }
+            set
+            {
+                addSingleCardBtnEnabled = value;
+                OnPropertyChanged(nameof(AddSingleCardBtnEnabled));
+            }
+        }
+
+        private string singleCardToAdd;
+        public string SingleCardToAdd
+        {
+            get { return singleCardToAdd; }
+            set
+            {
+                singleCardToAdd = value;
+                OnPropertyChanged(nameof(SingleCardToAdd));
+                OnPropertyChanged(nameof(AddSingleCardBtnEnabled));
+            }
+        }
+
 
         private int calcSheetsToPrint(int numberOfCardFaces)
         {
