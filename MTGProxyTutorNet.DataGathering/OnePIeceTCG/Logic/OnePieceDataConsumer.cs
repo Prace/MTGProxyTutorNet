@@ -68,6 +68,9 @@ namespace MTGProxyTutorNet.DataGathering.OnePIeceTCG.Logic
                     var cardId = card.Descendants().SingleOrDefault(n => n.HasClass("idcarta"))?.InnerText;
                     var cardName = card.Descendants().SingleOrDefault(n => n.HasClass("nomecarta"))?.InnerText;
 
+                    if (!string.IsNullOrWhiteSpace(cardId))
+                        cardId = cardId.Trim();
+
                     var c = new OnePieceTCGCard
                     {
                         CardId = cardId,

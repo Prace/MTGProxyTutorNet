@@ -1,5 +1,6 @@
 ﻿using MTGProxyTutorNet.Contracts.Models.Custom;
 using MTGProxyTutorNet.Contracts.Models.Magic;
+using MTGProxyTutorNet.Contracts.Models.OnePiece;
 using MTGProxyTutorNet.Contracts.Models.Pokemon;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace MTGProxyTutorNet
             {
                 var printing = (value as PokemonCard).SelectedPrint as PokemonCardPrint;
                 return printing.SpecificCardName;
+            }
+            else if (value is OnePieceCard)
+            {
+                return (value as OnePieceCard).CardName;
             }
             else if (value is CustomCard)
             {
