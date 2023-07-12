@@ -5,6 +5,7 @@ using MTGProxyTutorNet.BusinessLogic.Loggers;
 using MTGProxyTutorNet.BusinessLogic.Parsers;
 using MTGProxyTutorNet.BusinessLogic.PDF;
 using MTGProxyTutorNet.Contracts.Interfaces;
+using MTGProxyTutorNet.DataGathering.OnePIeceTCG.Logic;
 using MTGProxyTutorNet.DataGathering.PokemonTCG.Logic;
 using MTGProxyTutorNet.DataGathering.Scryfall.Logic;
 using MTGProxyTutorNet.DependencyInjection.MapperProfiles;
@@ -35,8 +36,11 @@ namespace MTGProxyTutorNet.DependencyInjection
             serviceCollection.AddSingleton<IPDFManager, PDFManager>();
             serviceCollection.AddScoped<IMultiLineStringParser, MultiLineStringParser>();
             serviceCollection.AddScoped<IWebApiConsumer, WebApiConsumer>();
+            serviceCollection.AddScoped<OnePieceDataConsumer>();
             serviceCollection.AddSingleton<ICardDataFetcher, ScryfallFetcher>();
             serviceCollection.AddSingleton<ICardDataFetcher, PokemonTCGFetcher>();
+            serviceCollection.AddSingleton<ICardDataFetcher, OnePieceTCGFetcher>();
+
 
             // Auto Mapper Configurations
             var mapperConfig = new MapperConfiguration(mc =>

@@ -6,7 +6,7 @@ namespace MTGProxyTutorNet.BusinessLogic.Parsers
 {
     public abstract class BaseParser
 	{
-		protected Regex lineWithQtyParseRegex = new Regex(@"\s*(\d+)\s*[xX]?\s+(.+)");
+		protected Regex lineWithQtyParseRegex = new Regex(@"\s*(\d+)\s*[xX]?\s*(.+)");
 
 		protected ParsedCard ParseSingleLine(string line)
 		{

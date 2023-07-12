@@ -143,16 +143,16 @@ namespace MTGProxyTutorNet
 
         private void AddOrUpdateCard(CardWrapperViewModel cardWrapper)
         {
-            var match = CardSelection.VM.Cards.FirstOrDefault(c => cardWrapper.Card.CardName == c.Card.CardName);
+            //var match = CardSelection.VM.Cards.FirstOrDefault(c => cardWrapper.Card.CardName == c.Card.CardName);
 
-            if (match != null)
-            {
-                match.Quantity = cardWrapper.Quantity;
-            }
-            else
-            {
+            //if (match != null)
+            //{
+            //    match.Quantity = cardWrapper.Quantity;
+            //}
+            //else
+            //{
                 CardSelection.VM.Cards.Add(cardWrapper);
-            }
+            //}
         }
 
         private async Task<Card> GetCardByNameAsync(string cardName)

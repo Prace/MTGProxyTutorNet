@@ -1,6 +1,7 @@
 ﻿using MTGProxyTutorNet.Contracts.Exceptions;
 using MTGProxyTutorNet.Contracts.Interfaces;
 using Newtonsoft.Json;
+using System.ComponentModel.Design;
 using System.Reflection;
 using System.Runtime.Caching;
 
@@ -23,6 +24,7 @@ namespace MTGProxyTutorNet.BusinessLogic.Http
 		public async Task<T> GetAsync<T>(string url, int msDelay = 0, bool useCache = true) where T: class
 		{
 			HttpResponseMessage response = null;
+			T result;
 
 			try
 			{
@@ -36,8 +38,16 @@ namespace MTGProxyTutorNet.BusinessLogic.Http
                 await Task.Delay(msDelay);
                 response = await _client.GetAsync(url);
 				response.EnsureSuccessStatusCode();
-				var body = await response.Content.ReadAsStringAsync();
-				T result = JsonConvert.DeserializeObject<T>(body);
+				string body = await response.Content.ReadAsStringAsync();
+
+				if(typeof(T) == typeof(string))
+				{
+					result = body as T;
+				}
+				else
+				{
+					result = JsonConvert.DeserializeObject<T>(body);
+				}
 
 				if (useCache)
 					addToCache(url, result);

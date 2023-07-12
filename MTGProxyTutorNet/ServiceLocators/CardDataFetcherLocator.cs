@@ -5,6 +5,7 @@ using MTGProxyTutorNet.DataGathering.PokemonTCG.Logic;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using MTGProxyTutorNet.DataGathering.Scryfall.Logic;
+using MTGProxyTutorNet.DataGathering.OnePIeceTCG.Logic;
 
 namespace MTGProxyTutorNet
 {
@@ -28,6 +29,10 @@ namespace MTGProxyTutorNet
                     {
                         case TCGType.POKEMON:
                             currentFetcher = fetchers.Single(f => f.GetType() == typeof(PokemonTCGFetcher));
+                            break;
+
+                        case TCGType.ONEPIECE:
+                            currentFetcher = fetchers.Single(f => f.GetType() == typeof(OnePieceTCGFetcher));
                             break;
 
                         case TCGType.MAGIC:

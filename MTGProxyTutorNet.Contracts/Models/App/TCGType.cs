@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace MTGProxyTutorNet.Contracts.Models.App
 {
@@ -12,6 +7,8 @@ namespace MTGProxyTutorNet.Contracts.Models.App
         [Description("Magic the Gathering")]
         MAGIC,
         [Description("Pokémon TCG")]
-        POKEMON
+        POKEMON,
+        [Description("One Piece TCG")]
+        ONEPIECE
     }
 }
