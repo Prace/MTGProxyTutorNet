@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Linq;
 using MTGProxyTutorNet.ViewModels;
-using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using System.Windows;
-using MTGProxyTutorNet.DependencyInjection;
+using MTGProxyTutorNet.ServiceLocators;
 
 namespace MTGProxyTutorNet
 {

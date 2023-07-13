@@ -6,7 +6,7 @@ using MTGProxyTutorNet.DataGathering.PokemonTCG;
 using MTGProxyTutorNet.DataGathering.Contracts.Interfaces;
 using MTGProxyTutorNet.DataGathering.OnePieceTCG;
 
-namespace MTGProxyTutorNet.DependencyInjection
+namespace MTGProxyTutorNet.ServiceLocators
 {
     internal static class CardDataFetcherLocator
     {

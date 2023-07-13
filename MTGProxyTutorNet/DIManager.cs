@@ -14,7 +14,7 @@ using MTGProxyTutorNet.ViewModels;
 using System;
 using System.Net.Http;
 
-namespace MTGProxyTutorNet.DependencyInjection
+namespace MTGProxyTutorNet
 {
     public class DIManager
     {

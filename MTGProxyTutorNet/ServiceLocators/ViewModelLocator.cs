@@ -1,7 +1,7 @@
 ﻿using MTGProxyTutorNet.Contracts.Exceptions;
 using MTGProxyTutorNet.ViewModels;
 
-namespace MTGProxyTutorNet.DependencyInjection
+namespace MTGProxyTutorNet.ServiceLocators
 {
     internal static class ViewModelLocator
     {
