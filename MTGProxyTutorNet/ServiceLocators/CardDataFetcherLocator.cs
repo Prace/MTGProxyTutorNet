@@ -10,7 +10,7 @@ namespace MTGProxyTutorNet.ServiceLocators
 {
     internal static class CardDataFetcherLocator
     {
-        private static readonly DIManager _DIManager = new DIManager();
+        private static readonly DependencyInjectionManager _DIManager = new DependencyInjectionManager();
         public static TCGType CurrentGame = TCGType.MAGIC;
 
         public static ICardDataFetcher Instance

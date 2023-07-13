@@ -16,11 +16,11 @@ using System.Net.Http;
 
 namespace MTGProxyTutorNet
 {
-    public class DIManager
+    public class DependencyInjectionManager
     {
         public readonly IServiceProvider ServiceProvider;
 
-        public DIManager()
+        public DependencyInjectionManager()
         {
             var serviceCollection = InitializeContainer();
             ServiceProvider = serviceCollection.BuildServiceProvider();

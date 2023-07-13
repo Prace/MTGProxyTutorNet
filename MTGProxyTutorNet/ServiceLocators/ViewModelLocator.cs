@@ -5,7 +5,7 @@ namespace MTGProxyTutorNet.ServiceLocators
 {
     internal static class ViewModelLocator
     {
-        private static readonly DIManager _DIManager = new DIManager();
+        private static readonly DependencyInjectionManager _DIManager = new DependencyInjectionManager();
 
         public static T GetViewModel<T>() where T : BaseViewModel
         {
