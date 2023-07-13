@@ -1,10 +1,8 @@
-﻿using MTGProxyTutorNet.Contracts.Interfaces;
+﻿using MTGProxyTutorNet.BusinessLogic.Contracts.Interfaces;
 using MTGProxyTutorNet.Contracts.Models.App;
 using PdfSharpCore;
 using PdfSharpCore.Drawing;
 using PdfSharpCore.Pdf;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace MTGProxyTutorNet.BusinessLogic.PDF
 {

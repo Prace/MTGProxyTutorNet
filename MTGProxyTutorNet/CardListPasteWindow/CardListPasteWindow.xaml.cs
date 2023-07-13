@@ -1,4 +1,5 @@
 ﻿using MTGProxyTutorNet.Contracts.Models.App;
+using MTGProxyTutorNet.DependencyInjection;
 using MTGProxyTutorNet.ViewModels;
 using System;
 using System.Collections.Generic;

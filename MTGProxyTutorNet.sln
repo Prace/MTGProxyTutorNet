@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTGProxyTutorNet.Contracts"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTGProxyTutorNet.BusinessLogic", "MTGProxyTutorNet.BusinessLogic\MTGProxyTutorNet.BusinessLogic.csproj", "{3EE56869-2EC8-4AB2-96B6-E87F40AD0C53}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTGProxyTutorNet.ViewModels", "MTGProxyTutorNet.ViewModels\MTGProxyTutorNet.ViewModels.csproj", "{16F4408F-2860-4866-95B1-07E67106EA4D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTGProxyTutorNet.DataGathering", "MTGProxyTutorNet.DataGathering\MTGProxyTutorNet.DataGathering.csproj", "{0A55D11F-ED22-4B8F-AA0E-0F50EDD59143}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MTGProxyTutorNet.DependencyInjection", "MTGProxyTutorNet.DependencyInjection\MTGProxyTutorNet.DependencyInjection.csproj", "{8A88E748-D481-45F7-A70B-E273847FA34D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTGProxyTutorNet.BusinessLogic.Contracts", "MTGProxyTutorNet.BusinessLogic.Contracts\MTGProxyTutorNet.BusinessLogic.Contracts.csproj", "{0C65DFD2-3861-4E21-851D-EF60F043669B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTGProxyTutorNet.DataGathering.Contracts", "MTGProxyTutorNet.DataGathering.Contracts\MTGProxyTutorNet.DataGathering.Contracts.csproj", "{02533F86-CD0A-44B2-BA54-19D2BD6DCCE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,18 +33,18 @@ Global
 		{3EE56869-2EC8-4AB2-96B6-E87F40AD0C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EE56869-2EC8-4AB2-96B6-E87F40AD0C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EE56869-2EC8-4AB2-96B6-E87F40AD0C53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{16F4408F-2860-4866-95B1-07E67106EA4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16F4408F-2860-4866-95B1-07E67106EA4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16F4408F-2860-4866-95B1-07E67106EA4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16F4408F-2860-4866-95B1-07E67106EA4D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0A55D11F-ED22-4B8F-AA0E-0F50EDD59143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0A55D11F-ED22-4B8F-AA0E-0F50EDD59143}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A55D11F-ED22-4B8F-AA0E-0F50EDD59143}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A55D11F-ED22-4B8F-AA0E-0F50EDD59143}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A88E748-D481-45F7-A70B-E273847FA34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A88E748-D481-45F7-A70B-E273847FA34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A88E748-D481-45F7-A70B-E273847FA34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A88E748-D481-45F7-A70B-E273847FA34D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C65DFD2-3861-4E21-851D-EF60F043669B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C65DFD2-3861-4E21-851D-EF60F043669B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C65DFD2-3861-4E21-851D-EF60F043669B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C65DFD2-3861-4E21-851D-EF60F043669B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02533F86-CD0A-44B2-BA54-19D2BD6DCCE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02533F86-CD0A-44B2-BA54-19D2BD6DCCE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02533F86-CD0A-44B2-BA54-19D2BD6DCCE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02533F86-CD0A-44B2-BA54-19D2BD6DCCE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

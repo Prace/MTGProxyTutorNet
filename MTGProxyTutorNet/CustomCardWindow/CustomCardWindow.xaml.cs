@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using MTGProxyTutorNet.Contracts.Models.App;
 using MTGProxyTutorNet.Contracts.Models.Custom;
+using MTGProxyTutorNet.DependencyInjection;
 using MTGProxyTutorNet.ViewModels;
 using System;
 using System.Collections.Generic;

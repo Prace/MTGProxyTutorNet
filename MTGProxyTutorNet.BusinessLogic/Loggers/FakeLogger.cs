@@ -1,4 +1,4 @@
-﻿using MTGProxyTutorNet.Contracts.Interfaces;
+﻿using MTGProxyTutorNet.BusinessLogic.Contracts.Interfaces;
 
 namespace MTGProxyTutorNet.BusinessLogic.Loggers
 {

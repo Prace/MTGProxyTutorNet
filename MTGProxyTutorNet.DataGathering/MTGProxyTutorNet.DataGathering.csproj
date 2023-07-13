@@ -8,11 +8,14 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.49" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Runtime.Caching" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MTGProxyTutorNet.BusinessLogic.Contracts\MTGProxyTutorNet.BusinessLogic.Contracts.csproj" />
     <ProjectReference Include="..\MTGProxyTutorNet.Contracts\MTGProxyTutorNet.Contracts.csproj" />
+    <ProjectReference Include="..\MTGProxyTutorNet.DataGathering.Contracts\MTGProxyTutorNet.DataGathering.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

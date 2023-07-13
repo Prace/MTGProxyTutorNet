@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MTGProxyTutorNet.BusinessLogic.Contracts\MTGProxyTutorNet.BusinessLogic.Contracts.csproj" />
     <ProjectReference Include="..\MTGProxyTutorNet.Contracts\MTGProxyTutorNet.Contracts.csproj" />
   </ItemGroup>
 

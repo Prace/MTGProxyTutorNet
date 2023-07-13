@@ -1,7 +1,7 @@
 ﻿using Microsoft.Win32;
-using MTGProxyTutorNet;
 using MTGProxyTutorNet.Contracts.Models.App;
 using MTGProxyTutorNet.Contracts.Models.Custom;
+using MTGProxyTutorNet.DependencyInjection;
 using MTGProxyTutorNet.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -46,7 +46,7 @@ namespace MTGProxyTutorNet
         private void CardsParsedEventHandler(object sender, List<ParsedCard> e)
         {
             _parsedCards = e;
-            FillCardGrid();
+            var _ = FillCardGrid();
             _cardListPasteWindow.Close();
             _cardListPasteWindow.CardsParsedEvent -= CardsParsedEventHandler;
         }
@@ -196,7 +196,7 @@ namespace MTGProxyTutorNet
 
         private void AddSingleCard_Click(object sender, RoutedEventArgs e)
         {
-            AddSingleCard();
+            var _ = AddSingleCard();
         }
 
         private async Task AddSingleCard()
@@ -233,7 +233,7 @@ namespace MTGProxyTutorNet
         {
             if (e.Key == Key.Enter)
             {
-                AddSingleCard();
+                var _ = AddSingleCard();
             }
         }
     }

@@ -1,7 +1,5 @@
-﻿using MTGProxyTutorNet.Contracts.Interfaces;
+﻿using MTGProxyTutorNet.BusinessLogic.Contracts.Interfaces;
 using MTGProxyTutorNet.Contracts.Models.App;
-using System.Collections.Generic;
-using System.IO;
 
 namespace MTGProxyTutorNet.BusinessLogic.Parsers
 {

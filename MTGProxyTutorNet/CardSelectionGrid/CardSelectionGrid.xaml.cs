@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using System.Windows;
+using MTGProxyTutorNet.DependencyInjection;
 
 namespace MTGProxyTutorNet
 {
